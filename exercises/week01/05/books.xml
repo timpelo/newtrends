@@ -1,0 +1,57 @@
+<books>
+    <book>
+        <author>
+            <name>J.K Rowling</name>
+        </author>
+        <name>Harry Potter and Philosopher's Stone</name>
+        <publisher>Raincoast</publisher>
+        <description>First part of story of Harry Potters adventures in wizard worl</description>
+        <type>Fantasy</type>
+        <price>25</price>
+    </book>
+    
+    <book>
+        <author>
+            <name>J.K Rowling</name>
+        </author>
+        <name>Harry Potter and Chamber of Secrets</name>
+        <publisher>Raincoast</publisher>
+        <description>Second part of story of Harry Potters adventures in wizard worl</description>
+        <type>Fantasy</type>
+        <price>30</price>
+    </book>
+    
+    <book>
+        <author>
+            <name>J.K Rowling</name>
+        </author>
+        <name>Harry Potter and Prisoner of Azkaban</name>
+        <publisher>Raincoast</publisher>
+        <description>Thrid part of story of Harry Potters adventures in wizard worl</description>
+        <type>Fantasy</type>
+        <price>35</price>
+    </book>
+    
+    <book>
+        <author>
+            <name>J.K Rowling</name>
+        </author>
+        <name>Harry Potter and Goblet of Fire</name>
+        <publisher>Raincoast</publisher>
+        <description>Fourth part of story of Harry Potters adventures in wizard worl</description>
+        <type>Fantasy</type>
+        <price>30</price>
+    </book>
+    
+    <book>
+        <author>
+            <name>J.K Rowling</name>
+        </author>
+        <name>Harry Potter and Order of Phoenix</name>
+        <publisher>Raincoast</publisher>
+        <description>Fifth part of story of Harry Potters adventures in wizard worl</description>
+        <type>Fantasy</type>
+        <price>30</price>
+    </book>
+    
+</books>

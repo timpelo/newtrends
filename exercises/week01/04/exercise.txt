@@ -1,0 +1,10 @@
+GET
+
+telnet koti.tamk.fi
+GET /~e4jtimon/newtrends/welcome.php?name=Jani&email=GMAIL
+
+POST
+telnet koti.tamk.fi
+POST /~e4jtimon/newtrends/welcome.php HTTP/1.0
+Content-Length:21
+name=Jani&email=GMAIL
