@@ -1,3 +1,4 @@
+document.body.style.backgroundColor = "red";
 document.write("Hello World! <br />");
 document.write(window.location.href + "<br />");
 document.write(document.title + "<br />");
