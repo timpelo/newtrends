@@ -1,21 +1,12 @@
 <html>
     <head>
         <script type="text/javascript" src="functions.js"></script>
+        <script type="text/javascript" src="duck.js"></script>
     </head>
     <body>
-        <button onclick="a()">a</button>
-        <button onclick="b()">b</button>
-        <button onclick="c()">c</button>
-        <button onclick="d()">d and e</button>
-
-        <br />
-        <input id ="height" onkeyup = "calcBmi()" type = "hidden" placeholder="Height in metres" />
-        <br />
-        <input id ="weight" onkeyup = "calcBmi()" type = "hidden" placeholder="Weight in kilograms" />
-        <br />
-        <input id ="bmi" readonly="readonly" type = "hidden" placeholder="result" />
-        <br />
-        <p id = "description"></p>
+        <button onclick="a()">8.1</button>
+        <button onclick="b()">8.2</button>
+        <button onclick="c()">8.3</button>
 
         <br />
         <input id ="name" onkeyup = "validateInfo()" type = "hidden" placeholder="Name" />
@@ -27,5 +18,28 @@
         <input id ="phone" onkeyup = "validateInfo()" type = "hidden" placeholder="Phone" />
         <p id = "phoneDesc"></p>
         <br />
+
+        <ul id="linklist" style="display:none;">
+          <li><a href = "http://www,google.com">GOOGLE</a></li>
+          <li><a id ="fblink" onmouseover="runAway()" href = "http://www,facebook.com">FACEBOOK</a></li>
+          <li><a href = "http://www,iltalehti.fi">ILTALEHTI</a></li>
+        </ul>
+        <div id = "duckdiv" style="display:none;">
+          <button onclick ="addRow()">Add row</button>
+          <button onclick ="removeRow()">Remove row</button>
+          <table id = "ducktable" border="1">
+            <tr>
+              <td>
+                <img src="duck.png" />
+              </td>
+              <td>
+                <img src="white.jpg" />
+              </td>
+              <td>
+                <img src="white.jpg" />
+              </td>
+            </tr>
+        </table>
+      </div>
     </body>
 </html>

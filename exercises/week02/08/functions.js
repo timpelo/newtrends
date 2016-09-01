@@ -1,40 +1,11 @@
 function a() {
-    open("http://www.w3schools.com/jsref/met_win_open.asp");
-}
-
-
-function b() {
-  document.getElementById('weight').setAttribute('type', 'text');
-  document.getElementById('height').setAttribute('type', 'text');
-  document.getElementById('bmi').setAttribute('type', 'text');
-
-}
-
-function calcBmi() {
-  var weight = document.getElementById('weight').value
-  var height = document.getElementById('height').value
-
-  if(weight != null && height != null) {
-    var result = weight/(height*height);
-    document.getElementById('bmi').value = result;
-
-    var resultField = document.getElementById('description');
-    if(Number(result) < 18.5) {
-      resultField.innerHTML = "Alipainoinen";
-    } else if(Number(result) < 24.9)  {
-      resultField.innerHTML = "Normaali";
-    } else if(Number(result) < 29.9)  {
-     resultField.innerHTML = "Ylipaino";
-    } else {
-      resultField.innerHTML = "Salille heti!";
-    }
-  }
-}
-
-function c() {
   document.getElementById('name').setAttribute('type', 'text');
   document.getElementById('gender').setAttribute('type', 'text');
   document.getElementById('phone').setAttribute('type', 'text');
+}
+
+function b() {
+  document.getElementById('linklist').setAttribute('style', 'display:block;');
 }
 
 function validateInfo() {
@@ -46,7 +17,7 @@ function validateInfo() {
   // Regex strings
   var phoneReg = /^((([\+][\s]{0,1})|([0]{2}[\s-]{0,1}))([358]{3})([\s-]{0,1})|([0]{1}))(([1-9]{1}[0-9]{0,1})([\s-]{0,1})([0-9]{2,4})([\s-]{0,1})([0-9]{2,4})([\s-]{0,1}))([0-9]{0,3}){1}$/;
   var nameReg = /[A-Z]{1}[a-z]{2,}/;
-  var genderReg = /man|female|cheeseburger|apachehelicopter/;
+  var genderReg = /male|female|cheeseburger|apachehelicopter/;
 
   // Validate checks.
   if(!phone.match(phoneReg)) {
@@ -67,21 +38,25 @@ function validateInfo() {
     document.getElementById('genderDesc').innerHTML = 'Valid!';
   }
 }
+var clickAmount = 0;
 
-function d() {
+function runAway(element) {
+  clickAmount += 1;
+  var link = document.getElementById('fblink');
 
-    var Person = function (fname_, lname_) {
-        this.fname = fname_;
-        this.lname = lname_;
-        this.age = 0;
+  if(clickAmount < 10) {
+    var maxY = window.innerHeight;
+    var maxX = window.innerWidth;
 
-        this.setAge = function(age_) {
-            this.age = age_;
-        }
-    }
-
-    var person = new Person("Martti", "Lutteri");
-    person.setAge(15);
-    document.write(person.fname + " " + person.lname + " " + person.age);
-    console.log(window);
+    var x = Math.floor((Math.random() * maxX) + 1);
+    var y = Math.floor((Math.random() * maxY) + 1);
+    console.log("" + x + ", " + y);
+    link.style.position = 'fixed';
+    link.style.top = y;
+    link.style.left = x;
+  } else if(clickAmount < 11) {
+    alert("Back to work peasant!");
+  } else {
+    open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+  }
 }
