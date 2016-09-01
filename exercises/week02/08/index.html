@@ -25,21 +25,28 @@
           <li><a href = "http://www,iltalehti.fi">ILTALEHTI</a></li>
         </ul>
         <div id = "duckdiv" style="display:none;">
-          <button onclick ="addRow()">Add row</button>
-          <button onclick ="removeRow()">Remove row</button>
+          <button onclick = "moveDuck('up')" style="margin-left:40px;">Move up</button><br/>
+          <button onclick = "moveDuck('left')">Move left</button>
+          <button onclick = "moveDuck('right')">Move right</button><br />
+          <button onclick = "moveDuck('down')" style="margin-left:40px;">Move down</button>
           <table id = "ducktable" border="1">
             <tr>
-              <td>
+              <td id="0_0">
                 <img src="duck.png" />
               </td>
-              <td>
+              <td id="0_1">
                 <img src="white.jpg" />
               </td>
-              <td>
+              <td id="0_2">
+                <img src="white.jpg" />
+              </td>
+              <td id="0_3">
                 <img src="white.jpg" />
               </td>
             </tr>
         </table>
+        <button onclick ="addRow()">Add row</button>
+        <button onclick ="removeRow()">Remove row</button>
       </div>
     </body>
 </html>
