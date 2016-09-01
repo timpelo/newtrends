@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script type="text/javascript" src="functions.js"></script>
+    </head>
+    <body>
+        <button onclick="a()">a</button>
+        <button onclick="b()">b</button>
+        <button onclick="c()">c</button>
+        <button onclick="d()">d and e</button>
+
+        <br />
+        <input id ="height" onkeyup = "calcBmi()" type = "hidden" placeholder="Height in metres" />
+        <br />
+        <input id ="weight" onkeyup = "calcBmi()" type = "hidden" placeholder="Weight in kilograms" />
+        <br />
+        <input id ="bmi" readonly="readonly" type = "hidden" placeholder="result" />
+        <br />
+        <p id = "description"></p>
+
+        <br />
+        <input id ="name" onkeyup = "validateInfo()" type = "hidden" placeholder="Name" />
+        <p id = "nameDesc"></p>
+        <br />
+        <input id ="gender" onkeyup = "validateInfo()" type = "hidden" placeholder="Gender" />
+        <p id = "genderDesc"></p>
+        <br />
+        <input id ="phone" onkeyup = "validateInfo()" type = "hidden" placeholder="Phone" />
+        <p id = "phoneDesc"></p>
+        <br />
+    </body>
+</html>
