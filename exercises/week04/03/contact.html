@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>BMI</title>
+    <script src="../angular.min.js" type="text/javascript"></script>
+    <script src ="contactmodule.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  </head>
+  <body ng-app="MyModule">
+    <div ng-controller="MyController">
+      <form class="pure-form">
+        <fieldset>
+          <input type="text" placeholder="Name" ng-model="newname" /><br/>
+          <input type="text" placeholder="Email" ng-model="newemail" /><br/>
+          <input type="text" placeholder="Phone" ng-model="newphone" /><br/>
+          <button ng-click="addNew()" class="pure-button pure-button-primary">Add</button><br/>
+        <fieldset>
+      </form>
+      <table class="pure-table">
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Birthday</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="customer in contacts | orderBy:'id'">
+            <td>{{customer.id}}</td>
+            <td>{{customer.name}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.phone}}</td>
+            <td><button ng-click="remove(customer.id)" class="pure-button">delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
