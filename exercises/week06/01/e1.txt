@@ -1,0 +1,4 @@
+a) db.employees.find({"last_name":"Foster"})
+b) db.employees.find().limit(10)
+c) db.employees.find().limit(10).skip(10)
+d) db.employees.find().sort({"id" : 1})
