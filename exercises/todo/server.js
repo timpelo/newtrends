@@ -38,12 +38,12 @@
   });
 
   // Adds new list to the database.
-  app.post("/addList", function(req, res) {
+  app.post("/list/add", function(req, res) {
     var name = req.body.name;
     var desc = req.body.description;
 
     if(name != null && desc != null) {
-      var todoList = TodoList(name, desc);
+      var todoList = TodoList(name, desc, null);
       mongo.addList(todoList, function(result) {
 
         if(result.success === "true") {
@@ -52,12 +52,55 @@
         res.json(result);
       })
     } else {
-      res.json({"success":"false", "description":"Invalid name or description"});
+      res.json(JSONResponse(false, "Invalid name or description"));
     }
   });
 
+  app.post("/list/update", function(req, res) {
+    var name = req.body.name;
+    var desc = req.body.description;
+    var checked = req.body.checked;
+    var priority = req.body.priority;
+    var id = req.body.id;
+
+    if(id != null) {
+      mongo.getListById(id, function(result) {
+        var todoList = result[0];
+
+        if(todoList != null && todoList != undefined) {
+          if(desc != null) {
+            todoList.description = desc;
+          }
+          if(name != null) {
+            todoList.name = name;
+          }
+          if(checked != null) {
+            todoList.checked = checked;
+          }
+          if(priority != null) {
+            todoList.priority = priority;
+          }
+
+          mongo.updateList(todoList, function(result) {
+            res.json(result);
+          });
+        } else {
+          res.json(JSONResponse(false, "Invalid id"));
+        }
+      });
+    } else {
+      res.json(JSONResponse(false, "Invalid id"));
+    }
+  });
+
+  app.delete("/list/delete\/:listId([0-9]+?)$", function(req, res) {
+    mongo.deleteList(req.params.listId, function(result) {
+      res.json(result);
+    })
+  });
+
   /* Endpoints for managin todo items */
-  app.post("/addItem", function(req, res) {
+  app.post("/items/add", function(req, res) {
     var name = req.body.name;
     var desc = req.body.description;
     var listId = req.body.listId;
@@ -72,7 +115,7 @@
         res.json(result);
       })
     } else {
-      res.json({"success":"false", "description":"Invalid name or description"});
+      res.json(JSONResponse(false, "Invalid name or description"));
     }
   });
 
@@ -111,6 +154,15 @@
     };
 
     return item;
+  }
+
+  var JSONResponse = function(success, message) {
+    var response = {
+      "success":success,
+      "message":message
+    }
+
+    return response;
   }
 
 }())
