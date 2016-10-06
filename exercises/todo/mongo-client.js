@@ -61,10 +61,11 @@
     });
   }
 
-  function deleteList(listId, callback) {
+  function deleteList(listItem, callback) {
     MongoClient.connect(url, function(err, db) {
       var collection = db.collection('todolist');
-      collection.remove({"id":listId}, function(err, result) {
+      console.log(listItem._id);
+      collection.remove({_id:listItem._id}, function(err, result) {
         if(err != null) {
           callback({"success" : "false", "message":err});
         } else {

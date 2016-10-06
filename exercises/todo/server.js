@@ -56,6 +56,7 @@
     }
   });
 
+  // Updates list.
   app.post("/list/update", function(req, res) {
     var name = req.body.name;
     var desc = req.body.description;
@@ -93,10 +94,16 @@
     }
   });
 
+  // Deletes list.
   app.delete("/list/delete\/:listId([0-9]+?)$", function(req, res) {
-    mongo.deleteList(req.params.listId, function(result) {
-      res.json(result);
-    })
+    mongo.getListById(req.params.listId, function(result) {
+      var todoList = result[0];
+      if(todoList != null && todoList != undefined) {
+        mongo.deleteList(todoList, function(result) {
+          res.json(result);
+        })
+      }
+    });
   });
 
   /* Endpoints for managin todo items */
