@@ -2,5 +2,5 @@
 mongod &
 sleep 5
 nodejs server.js &
-sleep 5
+sleep 2
 exit

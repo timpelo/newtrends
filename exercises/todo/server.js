@@ -5,17 +5,21 @@
   var mongo = require('./mongo-client');
   var bodyParser = require('body-parser');
   var app = express();
+  var serverPort = 8080;
+  var lastListId = 0;
+  var lastItemId = 0;
 
-  var lastListId = mongo.getLastId('todolist', function(result) {
+
+  mongo.getLastId('todolist', function(result) {
     lastListId = result;
-    console.log("Last list " + lastListId);
-    return result;
+    console.log("init id of last list " + lastListId);
   });
-  var lastItemId = mongo.getLastId('todoitem', function(result) {
+
+  mongo.getLastId('todoitem', function(result) {
     lastItemId = result;
-    console.log("Last item " + lastItemId);
-    return result;
+    console.log("init id of last item " + lastItemId);
   });
+
 
   // Configuration
   app.use(bodyParser.json());
@@ -95,18 +99,20 @@
   });
 
   // Deletes list.
-  app.delete("/list/delete\/:listId([0-9]+?)$", function(req, res) {
-    mongo.getListById(req.params.listId, function(result) {
+  app.delete("/list/delete\/:id([0-9]+?)$", function(req, res) {
+    mongo.getListById(req.params.id, function(result) {
       var todoList = result[0];
       if(todoList != null && todoList != undefined) {
         mongo.deleteList(todoList, function(result) {
           res.json(result);
-        })
+        });
       }
     });
   });
 
   /* Endpoints for managin todo items */
+
+  // Add item.
   app.post("/items/add", function(req, res) {
     var name = req.body.name;
     var desc = req.body.description;
@@ -126,15 +132,82 @@
     }
   });
 
+  // Gets item with id
+  app.get("/item\/:id([0-9]+?)$", function(req, res) {
+    mongo.getItemById(req.params.id, function(result) {
+      res.json(result);
+    })
+  });
+
+  // Gets items from the list
   app.get("/items\/:listId([0-9]+?)$", function(req, res) {
     mongo.getItemsByList(req.params.listId, function(result) {
       res.json(result);
     })
   });
 
+  // Updates item
+  app.post("/items/update", function(req, res) {
+    var name = req.body.name;
+    var desc = req.body.description;
+    var checked = req.body.checked;
+    var priority = req.body.priority;
+    var listId = req.body.listId;
+    var id = req.body.id;
+
+    if(id != null) {
+      mongo.getItemById(id, function(result) {
+        var todoItem = result[0];
+
+        if(todoItem != null && todoItem != undefined) {
+          if(desc != null) {
+            todoItem.description = desc;
+          }
+          if(name != null) {
+            todoItem.name = name;
+          }
+          if(checked != null) {
+            todoItem.checked = checked;
+          }
+          if(priority != null) {
+            todoItem.priority = priority;
+          }
+
+          if(listId != null) {
+            todoItem.listId = listId;
+          }
+
+          mongo.updateItem(todoItem, function(result) {
+            res.json(result);
+          });
+        } else {
+          res.json(JSONResponse(false, "Invalid id"));
+        }
+      });
+    } else {
+      res.json(JSONResponse(false, "Invalid id"));
+    }
+  });
+
+  // Deletes item.
+  app.delete("/items/delete\/:id([0-9]+?)$", function(req, res) {
+    mongo.getItemById(req.params.id, function(result) {
+      var item = result[0];
+      if(item != null && item != undefined) {
+        mongo.deleteItem(item, function(result) {
+          res.json(result);
+        });
+      } else {
+        res.json(JSONResponse(false, "Item does not exist"));
+      }
+    });
+  });
+
+
+
   /* Server */
-  var server = app.listen(8080, function() {
-    console.log('listening port 8080');
+  var server = app.listen(serverPort, function() {
+
   });
 
   /* Models */
