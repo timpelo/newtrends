@@ -46,6 +46,9 @@
     var name = req.body.name;
     var desc = req.body.description;
 
+    console.log(name);
+    console.log(desc);
+
     if(name != null && desc != null) {
       var todoList = TodoList(name, desc, null);
       mongo.addList(todoList, function(result) {
