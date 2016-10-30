@@ -198,7 +198,7 @@ a:after {
 .menu a {
 	margin-left: 20px;
 	color: #808080;
-	display: block;
+	display: inline-block;
 	font-size: 12px;
 	font-weight: 700;
 	line-height: 40px;
@@ -312,6 +312,12 @@ a:after {
   width: 100%;
 }
 
+.modal-input-prio {
+  background-color: white;
+  width: 18%;
+  float:right;
+}
+
 .modal-input-content {
   width: 100%;
   margin-top: 10px;
@@ -363,6 +369,26 @@ a:after {
 .btn-custom i {
   font-size:10px;
 }
+
+.delete-link{
+  color:white;
+}
+.delete-link:hover{
+  color:#ff3300;
+  cursor: pointer;
+}
+
+.delete-times{
+  font-size: 15px !important;
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.delete-times:hover{
+  color:#ff3300;
+  cursor: pointer;
+}
+
 
 #todo-list-table {
   display: none;

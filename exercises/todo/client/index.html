@@ -37,7 +37,7 @@
           New List
         </button>
         <div ng-repeat="list in todoLists">
-          <a ng-click="updateItems(list.id)">{{list.name}}</a>
+          <a ng-click="updateItems(list.id)">{{list.name | menutrim}}</a><i ng-click="deleteList(list.id)" class="fa fa-times delete-times"></i>
         </div>
       </div>
 
@@ -85,7 +85,7 @@
     <div id="f">
       <div class="list-container">
         <h1 style="color:#D4A017;">{{listDesc}}</h1>
-        <button class="pure-button btn-custom" style="margin:0;" data-toggle="modal" data-target="#listModal">
+        <button id="newItemButton" class="pure-button btn-custom" style="display:none;" data-toggle="modal" data-target="#listModal">
           New Item
         </button><br />
         <table id="todo-list-table" class="pure-table">
@@ -94,6 +94,7 @@
               <th ng-click="sort('name')">Name</th>
               <th ng-click="sort('description')">Description</th>
               <th ng-click="sort('priority')">Priority</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody class="custom-tbody">
@@ -101,6 +102,7 @@
               <td>{{item.name}}</td>
               <td>{{item.description}}</td>
               <td>{{item.priority}}</td>
+              <td><a class="delete-link" ng-click="deleteItem(item.id)">Delete</a></td>
             </tr>
           </tbody>
         </table>
@@ -116,7 +118,15 @@
             <h4 class="modal-title">New item</h4>
           </div>
           <div class="modal-body">
-            <input ng-model="itemModalTitle" class="modal-input-title" type="text" placeholder="Title" /> <br />
+            <input style="width:80%;" ng-model="itemModalTitle" class="modal-input-title" type="text" placeholder="Title" />
+            <select class="modal-input-prio" ng-model="itemModalPriority">
+              <option value="" selected disabled>Priority</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select> <br />
             <textarea ng-model="itemModalContent" class="modal-input-content" placeholder="Description"></textarea>
           </div>
           <div class="modal-footer">

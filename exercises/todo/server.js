@@ -120,9 +120,10 @@
     var name = req.body.name;
     var desc = req.body.description;
     var listId = req.body.listId;
+    var prio = req.body.priority;
 
-    if(name != null && desc != null && listId != null) {
-      var todoItem = TodoItem(name, desc, listId);
+    if(name != null && desc != null && listId != null && prio != null) {
+      var todoItem = TodoItem(name, desc, listId, prio);
       mongo.addItem(todoItem, function(result) {
 
         if(result.success === "true") {
@@ -226,14 +227,14 @@
     return list;
   }
 
-  var TodoItem = function(name, description, todoListId) {
+  var TodoItem = function(name, description, todoListId, priority) {
     var item = {
       "id":lastItemId+1,
       "name":name,
       "description":description,
       "todolist":todoListId,
       "checked":0,
-      "priority":1
+      "priority":priority
     };
 
     return item;

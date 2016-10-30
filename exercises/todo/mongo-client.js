@@ -71,7 +71,14 @@
         if(err != null) {
           callback({"success" : "false", "message":err});
         } else {
-          callback(result);
+          var items = db.collection(itemCollection);
+          items.remove({todolist:listItem.id}, function(err2, result2) {
+            if(err2 != null) {
+              callback({"success" : "false", "message":err2});
+            } else {
+              callback(result);
+            }
+          });
         }
         db.close();
       });
