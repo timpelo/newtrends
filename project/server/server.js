@@ -16,15 +16,26 @@
 
   /* Endpoints for maganing player profiles*/
 
-  // Gets players with filter.
-  app.post("/players", function(req, res) {
+  // Gets profiles with filter.
+  app.post("/profiles", function(req, res) {
     var filter = req.body.filter;
 
     if(filter != null && filter != undefined) {
-
+      mongo.getProfiles(filter, function(result) {
+        res.json(result);
+      });
     }
+  });
 
-    res.json(filter);
+  // Adds new profile to list.
+  app.post("/profiles/add", function(req, res) {
+    var profile = req.body.profile;
+
+    if(profile != null && profile != undefined) {
+      mongo.addProfile(profile, function(result) {
+          res.json(result);
+      });
+    }
   });
 
 
